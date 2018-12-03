@@ -4,9 +4,15 @@
   "description": "semantic command line interface",
   "main": "terminal.js",
   "scripts": {
+    "start": "node terminal.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "hco",
-  "license": "ISC"
+  "license": "ISC",
+  "bin": {
+    "sem-look": "./src/inquire.js",
+    "sem-suggest": "./src/suggest.js",
+    "sem-app": "./terminal.js"
+  }
 }
