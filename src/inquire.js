@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const https = require('https');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
@@ -42,7 +41,7 @@ function inquire(text, os) {
 
 async function execReq() {
     // get command parameters
-    const [, , ...args] = process.argv;
+    const [,, ...args] = process.argv;
     const os = process.platform;
 
     if (!args && !os) {
