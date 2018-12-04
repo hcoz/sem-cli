@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const https = require('https');
 const util = require('util');
+const readline = require('readline');
 const exec = util.promisify(require('child_process').exec);
 
 const constants = require('./constants.json');
@@ -43,7 +44,7 @@ function inquire(text, os) {
 
 async function execReq() {
     // get command parameters
-    const [,, ...args] = process.argv;
+    const [, , ...args] = process.argv;
     const os = process.platform;
 
     if (!args && !os) {
@@ -64,7 +65,23 @@ async function execReq() {
                 console.error(stderr);
             }
         } else {
-            console.log(constants.ARE_YOU_SURE, result.command);
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
+            });
+
+            rl.question(`Are you sure to run: ${result.command} ? (type 'y' for yes, 'n' for no)\n`, async (answer) => {
+                if (answer === 'y' || answer === 'Y') {
+                    const { stdout, stderr } = await exec(result.command);
+                    if (stdout) {
+                        console.log(stdout);
+                    }
+                    if (stderr) {
+                        console.error(stderr);
+                    }
+                }
+                rl.close();
+            });
         }
     } catch (err) {
         console.error(constants.ERROR);
