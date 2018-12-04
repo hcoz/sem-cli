@@ -3,6 +3,8 @@ const https = require('https');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
+const constants = require('./constants.json');
+
 function inquire(text, os) {
     const options = {
         hostname: 'sem-cli.herokuapp.com',
@@ -18,13 +20,13 @@ function inquire(text, os) {
                     // if response don't have necessary fields return error
                     let data = JSON.parse(chunk);
                     if (!data.command || !data.danger_level) {
-                        reject('no response');
+                        reject(constants.NO_RESPONSE);
                         req.end();
                         return;
                     }
                     resolve(data);
                 } catch (err) {
-                    reject('no response');
+                    reject(constants.NO_RESPONSE);
                     req.end();
                     return;
                 }
@@ -45,7 +47,7 @@ async function execReq() {
     const os = process.platform;
 
     if (!args && !os) {
-        console.error('missing parameters');
+        console.error(constants.MISSING_PARAM);
         return;
     }
 
@@ -62,10 +64,10 @@ async function execReq() {
                 console.error(stderr);
             }
         } else {
-            console.log('are you sure to run', result.command);
+            console.log(constants.ARE_YOU_SURE, result.command);
         }
     } catch (err) {
-        console.error('error occured');
+        console.error(constants.ERROR);
     }
 }
 // execute the request

@@ -1,5 +1,7 @@
 {
-    "MISSING_PARAM": "missing parameters",
-    "ERROR": "error occured",
-    "NO_RESPONSE": "Sorry, but we have no response..\n"
+    "MISSING_PARAM": "Missing parameters",
+    "ERROR": "Error occured",
+    "NO_RESPONSE": "Sorry, but we have no response..\n",
+    "ARE_YOU_SURE": "Are you sure to run:",
+    "MISSING_EMPTY_PARAM": "Missing or empty parameters"
 }
