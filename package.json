@@ -1,20 +1,28 @@
 {
   "name": "sem-cli",
-  "version": "1.0.0",
-  "description": "semantic command line interface",
+  "version": "1.0.1",
+  "description": "semantic command line interface which works with human language commands.",
   "main": "terminal.js",
   "scripts": {
     "start": "node terminal.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hcoz/sem-cli.git"
   },
   "keywords": [
     "semantic",
     "command line"
   ],
   "author": "hco",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "sem-look": "./src/inquire.js",
     "sem-suggest": "./src/suggest.js"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/hcoz/sem-cli/issues"
+  },
+  "homepage": "https://github.com/hcoz/sem-cli"
 }
