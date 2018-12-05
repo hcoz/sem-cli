@@ -18,8 +18,11 @@ npm install sem-cli -g
 * sem-look: It is for running your command.
 
 ```bash
-sem-look <your message in English>
+sem-look <your message in human language>
 ```
+
+! You can use the all languages which are supported by Wit.ai
+To check list of all languages, visit https://wit.ai/faq
 
 Here is the example:
 
@@ -28,6 +31,11 @@ sem-look list files
 ```
 
 * sem-suggest: It is for suggesting a new (intent, command, dangerLevel) triple to extend the database
+    * intent: It is a short explanation for the purpose of this command. It will be the key of this triple
+    * command:  It is the related command. (Please suggest a command which is working on your current operating system)
+    * dangerLevel: It shows how dangerous to run this command. It can be "low", "medium" or "high". ("high" dangerous commands will not be run before a client approval)
+
+! The order of parameters is important. Please use same as the shown below.
 
 ```bash
 sem-suggest "<intent>" "<command>" "<dangerLevel>"
@@ -38,7 +46,3 @@ Here is the example:
 ```bash
 sem-suggest "list_files" "ls" "low"
 ```
-
-    * intent: It is a short explanation for the purpose of this command. It will be the key of this triple
-    * command:  It is the related command. (Please suggest a command which is working on your current operating system)
-    * dangerLevel: It shows how dangerous to run this command. It can be 'low', 'medium' or 'high'. ('high' dangerous commands will not be run before a client approval)
