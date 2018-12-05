@@ -1,7 +1,7 @@
 {
     "MISSING_PARAM": "Missing parameters",
     "ERROR": "Error occured",
-    "NO_RESPONSE": "Sorry, but we have no response..\n",
+    "NO_RESPONSE": "Sorry, but we have no response..\nYou can suggest new (intent, command, dangerLevel) triples by using 'sem-suggest' command",
     "ARE_YOU_SURE": "Are you sure to run:",
     "MISSING_EMPTY_PARAM": "Missing or empty parameters"
 }

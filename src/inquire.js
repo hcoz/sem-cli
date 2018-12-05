@@ -84,7 +84,7 @@ async function execReq() {
             });
         }
     } catch (err) {
-        console.error(constants.ERROR);
+        console.error(err);
     }
 }
 // execute the request
