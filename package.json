@@ -1,6 +1,6 @@
 {
   "name": "sem-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "semantic command line interface which works with human language commands.",
   "main": "terminal.js",
   "scripts": {

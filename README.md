@@ -15,7 +15,7 @@ npm install sem-cli -g
 
 ## Commands
 
-* sem-look: It is for running your command.
+* **sem-look**: It is for running your command.
 
 ```bash
 sem-look <your message in human language>
@@ -30,19 +30,19 @@ Here is the example:
 sem-look list files
 ```
 
-* sem-suggest: It is for suggesting a new (intent, command, dangerLevel) triple to extend the database
-    * intent: It is a short explanation for the purpose of this command. It will be the key of this triple
-    * command:  It is the related command. (Please suggest a command which is working on your current operating system)
-    * dangerLevel: It shows how dangerous to run this command. It can be "low", "medium" or "high". ("high" dangerous commands will not be run before a client approval)
+* **sem-suggest**: It is for suggesting a new (intent, command, dangerLevel) triple to extend the database
+    * **intent**: It is a short explanation for the purpose of this command. It will be the key of this triple
+    * **command**:  It is the related command. (Please suggest a command which is working on your current operating system)
+    * **dangerLevel**: It shows how dangerous to run this command. It can be "low", "medium" or "high". ("high" dangerous commands will not be run before a client approval)
 
-! The order of parameters is important. Please use same as the shown below.
+**! The order of parameters is important. Please use same as the shown below.**
 
 ```bash
-sem-suggest "<intent>" "<command>" "<dangerLevel>"
+sem-suggest intent="<intent>" command="<command>" dangerLevel="<dangerLevel>"
 ```
 
 Here is the example:
 
 ```bash
-sem-suggest "list_files" "ls" "low"
+sem-suggest intent="list_files" command="ls" dangerLevel="low"
 ```
