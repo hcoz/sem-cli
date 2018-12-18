@@ -15,6 +15,12 @@ npm install sem-cli -g
 
 ## Commands
 
+* **sem-app**: It is for getting more information about the package.
+
+```bash
+sem-app
+```
+
 * **sem-look**: It is for running your command.
 
 ```bash
@@ -38,7 +44,7 @@ Here is the example:
 sem-look list files p="subdir"
 ```
 
-It will show the files under `<your current durectory>/<subdir>`
+It will show the files under `<your current directory>/<subdir>`
 
 * **sem-suggest**: It is for suggesting a new (intent, command, dangerLevel) triple to extend the database
   * **intent**: It is a short explanation for the purpose of this command. It will be the key of this triple
