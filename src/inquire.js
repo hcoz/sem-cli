@@ -53,11 +53,21 @@ async function execReq() {
     }
 
     try {
+        let messages = [],
+            params = [];
+        // seperate messages and parameters
+        for (let item of args) {
+            if (item.match(/p=/g)) {
+                params.push(item.substring(2));
+            } else {
+                messages.push(item);
+            }
+        }
         // send request to sem-cli-server
-        let result = await inquire(args.join('-'), os);
+        let result = await inquire(messages.join('-'), os);
         //run the command
         if (result.danger_level !== 'high') {
-            const { stdout, stderr } = await exec(result.command);
+            const { stdout, stderr } = await exec(`${result.command} ${params.join(' ')}`);
             if (stdout) {
                 console.log(stdout);
             }
@@ -72,7 +82,7 @@ async function execReq() {
 
             rl.question(`Are you sure to run: ${result.command} ? (type 'y' for yes, 'n' for no)\n`, async (answer) => {
                 if (answer === 'y' || answer === 'Y') {
-                    const { stdout, stderr } = await exec(result.command);
+                    const { stdout, stderr } = await exec(`${result.command} "${params.join(' ')}"`);
                     if (stdout) {
                         console.log(stdout);
                     }
