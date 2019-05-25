@@ -24,9 +24,13 @@ async function execReq() {
             }
         }
         // send request to sem-cli-server
-        let result = await inquire(messages.join('-'), os);
+        const result = await inquire(messages.join('-'), os);
         // show the command
-        console.log(`Your command: "${result.command} ${params.join(' ')}" with danger level: "${result.danger_level}"`);
+        let command = result.command;
+        if (params.length > 0) {
+            command += ' ' + params.join(' ');
+        }
+        console.log(`Your command: "${command}" with danger level: "${result.danger_level}" for your current operating system`);
     } catch (err) {
         console.error(err);
     }

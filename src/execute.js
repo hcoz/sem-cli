@@ -28,7 +28,7 @@ async function execReq() {
             }
         }
         // send request to sem-cli-server
-        let result = await inquire(messages.join('-'), os);
+        const result = await inquire(messages.join('-'), os);
         // run the command
         if (result.danger_level !== 'high') {
             const { stdout, stderr } = await exec(`${result.command} ${params.join(' ')}`);

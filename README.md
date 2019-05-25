@@ -21,7 +21,7 @@ npm install sem-cli -g
 sem-app
 ```
 
-* **sem-look**: It is for running your command.
+* **sem-look**: It is for showing the corresponding command for your message.
 
 ```bash
 sem-look <your message in human language>
@@ -41,7 +41,32 @@ You can also add arguments to your messages by using this notation `p="<argument
 Here is the example:
 
 ```bash
-sem-look list files p="subdir"
+sem-look compare files p="a.txt b.txt"
+```
+
+It will return `Your command: "cmp a.txt b.txt" with danger level: "low"` for MacOS
+
+* **sem-exec**: It is for executing the corresponding command for your message.
+
+```bash
+sem-exec <your message in human language>
+```
+
+You can use the all languages which are supported by Wit.ai
+To check list of all languages, visit <https://wit.ai/faq>
+
+Here is the example:
+
+```bash
+sem-exec list files
+```
+
+You can also add arguments to your messages by using this notation `p="<argument>"`
+
+Here is the example:
+
+```bash
+sem-exec list files p="subdir"
 ```
 
 It will show the files under `<your current directory>/<subdir>`
