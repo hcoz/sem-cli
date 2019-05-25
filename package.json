@@ -18,7 +18,8 @@
   "author": "hco",
   "license": "MIT",
   "bin": {
-    "sem-look": "./src/inquire.js",
+    "sem-look": "./src/look.js",
+    "sem-exec": "./src/execute.js",
     "sem-suggest": "./src/suggest.js"
   },
   "bugs": {
