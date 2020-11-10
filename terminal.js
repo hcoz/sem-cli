@@ -1,5 +1,5 @@
 function welcome() {
-    console.log(`There are two commands:
+    console.log(`There are three commands:
         1) sem-look <your sentence for desired command> p="<argument>" => to show a command
             Arguments are optional. For example: sem-look list files p="subdir"
         2) sem-exec <your sentence for desired command> p="<argument>" => to execute a command

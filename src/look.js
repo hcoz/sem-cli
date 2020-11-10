@@ -13,8 +13,8 @@ async function execReq() {
     }
 
     try {
-        let messages = [],
-            params = [];
+        const messages = [];
+        const params = [];
         // seperate messages and parameters
         for (let item of args) {
             if (item.match(/p=/g)) {
@@ -24,13 +24,13 @@ async function execReq() {
             }
         }
         // send request to sem-cli-server
-        const result = await inquire(messages.join('-'), os);
+        const result = await inquire(messages.join(' '), os);
         // show the command
-        let command = result.command;
+        let { command } = result;
         if (params.length > 0) {
-            command += ' ' + params.join(' ');
+            command += ` ${params.join(' ')}`;
         }
-        console.log(`Your command: "${command}" with danger level: "${result.danger_level}" for your current operating system`);
+        console.log(`Your command: "${command}" with danger level: "${result.dangerLevel}" for your current operating system.`);
     } catch (err) {
         console.error(err);
     }

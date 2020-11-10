@@ -1,31 +1,30 @@
 #!/usr/bin/env node
 const https = require('https');
-
 const constants = require('./constants.json');
 
-function suggest(intent, command, os, dangerLevel) {
-    const postData = JSON.stringify({
-        intent: intent,
-        command: command,
-        os: os,
-        dangerLevel: dangerLevel
-    });
+const regex = {
+    intent: /^intent=(.*?)$/g,
+    command: /^command=(.*?)$/g,
+    dangerLevel: /^dangerLevel=(.*?)$/g
+};
 
+function suggest(intent, command, os, dangerLevel) {
     const options = {
-        hostname: 'sem-cli.herokuapp.com',
+        hostname: 'sem-cli-serverless.azurewebsites.net',
         method: 'POST',
-        path: '/suggest',
+        path: '/api/suggest',
         headers: {
             'Content-Type': 'application/json'
         }
     };
+    const postData = JSON.stringify({ intent, command, os, dangerLevel });
 
     return new Promise((resolve, reject) => {
-        const req = https.request(options, (res) => {
+        const req = https.request(options, function (res) {
             res.setEncoding('utf8');
             if (res.statusCode === 200) {
                 // send server response
-                res.on('data', (chunk) => {
+                res.on('data', function (chunk) {
                     resolve(chunk);
                 });
             } else {
@@ -33,7 +32,7 @@ function suggest(intent, command, os, dangerLevel) {
             }
         });
 
-        req.on('error', (err) => {
+        req.on('error', function (err) {
             reject(err.message);
         });
 
@@ -43,11 +42,6 @@ function suggest(intent, command, os, dangerLevel) {
 }
 
 async function execReq() {
-    //regex definitions
-    const intentRegex = /^intent=(.*?)$/g;
-    const commandRegex = /^command=(.*?)$/g;
-    const dangerLevelRegex = /^dangerLevel=(.*?)$/g;
-
     // get command parameters
     const [, , ...args] = process.argv;
     const os = process.platform;
@@ -59,16 +53,16 @@ async function execReq() {
 
     try {
         // prepare suggestion parameters
-        let intent = intentRegex.exec(args[0])[1];
-        let command = commandRegex.exec(args[1])[1];
-        let dangerLevel = dangerLevelRegex.exec(args[2])[1];
+        const intent = regex.intent.exec(args[0])[1];
+        const command = regex.command.exec(args[1])[1];
+        const dangerLevel = regex.dangerLevel.exec(args[2])[1];
 
         if (!intent || !command || !dangerLevel) {
             console.error(constants.MISSING_EMPTY_PARAM);
             return;
         }
         // send request to sem-cli-server
-        let result = await suggest(intent, command, os, dangerLevel.toLowerCase());
+        const result = await suggest(intent, command, os, dangerLevel.toLowerCase());
         console.log(result);
     } catch (err) {
         console.error(constants.ERROR);
