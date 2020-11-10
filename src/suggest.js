@@ -9,17 +9,18 @@ const regex = {
 };
 
 function suggest(intent, command, os, dangerLevel) {
+    const postData = JSON.stringify({ intent, command, os, dangerLevel });
     const options = {
         hostname: 'sem-cli-serverless.azurewebsites.net',
         method: 'POST',
         path: '/api/suggest',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(postData)
         }
     };
-    const postData = JSON.stringify({ intent, command, os, dangerLevel });
 
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         const req = https.request(options, function (res) {
             res.setEncoding('utf8');
             if (res.statusCode === 200) {
