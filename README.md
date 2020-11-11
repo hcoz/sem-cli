@@ -3,7 +3,7 @@
 
 * This is a terminal app which works with human language commands.
 * It is developed in Node.js without any framework or external library.
-* This is the client side of the project. There is not so much logic in it. You can find the server side of it in there: <https://github.com/hcoz/sem-cli-server>
+* This is the client side of the project. There is not so much logic in it. You can find the server side of it in there: <https://github.com/hcoz/sem-cli-serverless>
 
 ## Installation
 
@@ -14,12 +14,6 @@ npm install sem-cli -g
 ```
 
 ## Commands
-
-* **sem-app**: It is for getting more information about the package.
-
-```bash
-sem-app
-```
 
 * **sem-look**: It is for showing the corresponding command for your message.
 
